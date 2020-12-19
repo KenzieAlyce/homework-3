@@ -21,7 +21,7 @@ function writePassword() {
   var uppercase = confirm("Would you like to include uppercase letters?");
   var numbers = confirm("Would you like to include numbers?");
   var specialChars = confirm("Would you like to include special characters?")
-
+  }
 
 //Character Arrays
 
