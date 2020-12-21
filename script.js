@@ -1,11 +1,11 @@
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+// Assignment Code
+var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
-  
   //Prompts user with password criteria
-  
   //Do while loop is used to ensure that a password is inputted into the prompt text between the set boundaries.
   do {
     var passwordLength = parseInt(prompt("Please pick a password length between 8 and 128 characters long."));
@@ -19,13 +19,11 @@ function writePassword() {
   var uppercase = confirm("Would you like to include uppercase letters?");
   var numbers = confirm("Would you like to include numbers?");
   var specialChars = confirm("Would you like to include special characters?");
-  
   //If cancel is selected for all criteria, then the alert below is displayed and the password generation is ended. 
   if (lowercase === false && uppercase === false && numbers === false && specialChars === false) {
     alert("Must select at least one criteria option!");
     return;
   }
-
   //Empty criteria array and all other criteria arrays are initialized.
   var criteria = [];
   var lowercaseArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -34,7 +32,6 @@ function writePassword() {
   var specialCharsArray = ['!', '#', '$', '%', '&', '(', ')', '*', '+', ',', '-', '.', ':', ';', '<', '=', '>', '?', '@', '^', '_', '|', '~'];
   var passwordString = "";
   var count = 0;
-
   //Pushes our various criteria specific arrays to our blank criteria array if user confirms they want them included.
   if (lowercase) {
     criteria.push(...lowercaseArray); 
@@ -56,16 +53,13 @@ function writePassword() {
     passwordString += criteria[Math.floor(Math.random() * specialCharsArray.length)];
     count++;
   }
-
   //Calls the generatePassword function and saves return value to variable called password.
   var password = generatePassword(); 
-
   //Possibly puts the generated password into the text area on the page???
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
-  //Function that uses a for loop that iterates the length of the password desired by user.
-  //It generates a random character/letter/number each iteration based on criteria array built earlier and appends to new password array.
+  /*Function that uses a for loop that iterates the length of the password desired by user.
+  It generates a random character/letter/number each iteration based on criteria array built earlier and appends to new password array.*/
   function generatePassword() {
     for (i = 0; i < passwordLength - count; i++) {
       var randomCharacter = Math.floor(Math.random() * criteria.length);
@@ -75,36 +69,15 @@ function writePassword() {
     return passwordString;
   }
 }
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-var uppers = confirm("Would you like to use uppercase letters?");
-var lowers = confirm("Would you like to use lowercase letters?");
-var numbers = confirm("Would you like to use numbers?");
-var symbols = confirm("Would you like to use special characters?");
-
-while (!uppers && !lowers && !numbers && !symbols) {
-  alert("You must select at least one character type!");
-  uppers = confirm("Would you like to use uppercase letters?");
-  lowers = confirm("Would you like to use lowercase letters?");
-  numbers = confirm("Would you like to use numbers?");
-  symbols = confirm("Would you like to use special characters?");
-}
-
-window.addEventListener('load', function() {
-  generateNewPassword();
-});
-
 function generateNewPassword() {
   var password = "";
-
   var allowed = {};
   if (uppers) password += rando(allowed.uppers = "QWERTYUIOPASDFGHJKLZXCVBNM");
   if (lowers) password += rando(allowed.lowers = "qwertyuiopasdfghjklzxcvbnm");
   if (numbers) password += rando(allowed.numbers = "1234567890");
   if (symbols) password += rando(allowed.symbols = "!@#$%^&*(){}[]=<>/,.");
-
   for (var i = password.length; i < length; i++) password += rando(rando(allowed).value);
-
   document.getElementById("password").value = randoSequence(password).join("");
-}
+   }
